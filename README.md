@@ -1,16 +1,27 @@
-# business_card_scanner
+# Business Card Scanner
 
-A new Flutter project.
+A mobile application that allows you to scan business cards, extract text information using Google ML Kit Text Recognition, and manage the scanned data. You can add the extracted contact details to your phone's contacts and perform various actions on the scanned business cards.
+
+## Features
+
+- **Business Card Scanning**: Use your device's camera to scan business cards and extract text information.
+
+- **Text Recognition**: Utilizes the Google ML Kit Text Recognition package to extract text from scanned images.
+
+- **Database**: Stores the scanned business card data in a SQLite database for easy retrieval and management.
+
+- **Architecture**: Follows the Model-View-Controller (MVC) architecture for organized code structure.
+
+- **State Management**: Implements GetX for efficient state management in the application.
+
+- **Contact Integration**: Allows you to add scanned contact details directly to your phone's contacts.
+
+- **Edit and Delete**: Edit or delete the scanned business card entries.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Clone the repository:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+git clone https://github.com/siyadkp/Business_Card_Scanner.git
+cd business-card-scanner
