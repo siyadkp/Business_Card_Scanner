@@ -1,11 +1,13 @@
+import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import '../../business_card_model/business_card_model.dart';
 import '../database/crud_functions/crud_functions.dart';
 import 'image_picker_camera_function/image_picker_camera_function.dart';
 
 // Optical Character Recognition Scanner Function ------------------------------
-
 Future<void> orcScanner() async {
+  final DabaseCURDfunctionController dabaseCURDfunctionController =
+      Get.put(DabaseCURDfunctionController());
   final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
   InputImage? inputImage = await getImageFromGallery();
 
@@ -52,7 +54,7 @@ Future<void> orcScanner() async {
       String emailValue = emails.isNotEmpty ? emails.first : "";
       String websiteValue = websites.isNotEmpty ? websites.first : "";
 
-      await insertBusinessCard(BusinessCardModel(
+      await dabaseCURDfunctionController.insertBusinessCard(BusinessCardModel(
           name: nameValue,
           contactNumber: contactNumberValue,
           email: emailValue,

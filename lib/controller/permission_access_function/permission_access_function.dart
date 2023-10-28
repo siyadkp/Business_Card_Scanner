@@ -1,7 +1,6 @@
 import 'package:permission_handler/permission_handler.dart';
 
 // Camera permistion request function ------------------------------------------
-
 Future<bool> requestPermissionOfCamera() async {
   final status = await Permission.camera.request();
   if (status.isGranted) {
@@ -10,11 +9,11 @@ Future<bool> requestPermissionOfCamera() async {
   return false;
 }
 
-Future<void> requestContactPermissionOfContacs() async {
+Future<bool> requestContactPermissionOfContacs() async {
   final status = await Permission.contacts.request();
   if (status.isGranted) {
-    // You have permission to access contacts.
+    return true;
   } else {
-    // Handle permission denial.
+    return false;
   }
 }

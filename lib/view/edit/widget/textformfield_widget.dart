@@ -15,13 +15,13 @@ class TextFormFiledWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.w600),
+            style: const TextStyle(fontWeight: FontWeight.w600),
           ),
           TextFormField(
             controller: controller,
@@ -30,40 +30,19 @@ class TextFormFiledWidget extends StatelessWidget {
               hintStyle:
                   const TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 1, color: Colors.black),
+                borderSide: const BorderSide(width: 1, color: Colors.black),
                 borderRadius: BorderRadius.circular(8),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   width: 2,
                   color: Colors.black,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              errorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  width: 2,
-                  color: Colors.red, // Customize the color for the error border
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  width: 2,
-                  color: Colors
-                      .red, // Customize the color for the focused error border
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'sdfsdfs';
-              }
-              return null;
-            },
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
         ],
