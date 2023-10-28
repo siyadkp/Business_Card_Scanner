@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "483393483434",
+    "project_id": "business-card-scanner-42f99",
+    "storage_bucket": "business-card-scanner-42f99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483393483434:android:fd205742c9b197903296d3",
+        "android_client_info": {
+          "package_name": "com.example.business_card_scanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgYWMX7eq6o1MK838fzQwhlgCKbNYxvhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
