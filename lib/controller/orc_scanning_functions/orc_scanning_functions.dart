@@ -6,15 +6,16 @@ import 'image_picker_camera_function/image_picker_camera_function.dart';
 
 // Optical Character Recognition Scanner Function ------------------------------
 Future<void> orcScanner() async {
-  final DabaseCURDfunctionController dabaseCURDfunctionController =
-      Get.put(DabaseCURDfunctionController());
+  final DabaseCURDfunctionController databaseCRUDFunctionController =
+      Get.find<DabaseCURDfunctionController>();
   final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
-  InputImage? inputImage = await getImageFromGallery();
 
   try {
+    final InputImage? inputImage = await getImageFromGallery();
     if (inputImage != null) {
       final RecognizedText recognizedText =
           await textRecognizer.processImage(inputImage);
+
       final List<String> names = [];
       final List<String> emails = [];
       final List<String> websites = [];
@@ -23,25 +24,27 @@ Future<void> orcScanner() async {
       for (TextBlock block in recognizedText.blocks) {
         for (TextLine line in block.lines) {
           final String lineText = line.text;
-          if (lineText.isNotEmpty && !lineText.contains(RegExp(r'\([^)]+\)'))) {
-            if (lineText.contains(RegExp(r'[A-Z][a-z]+ [A-Z][a-z]+'))) {
-              names.add(lineText);
+          if (lineText.isNotEmpty) {
+            if (RegExp(r'\b[A-Z][a-zA-Z]+ [A-Z][a-zA-Z]+\b')
+                .hasMatch(lineText)) {
+              if (lineText.length <= 15 && !lineText.contains(',')) {
+                names.add(lineText);
+              }
             }
 
-            // Check for email addresses
-            if (lineText.contains(RegExp(
-                r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'))) {
+            if (RegExp(r'\b(\+91\s?\d{10}|04\d{8}|\d{10})\b')
+                .hasMatch(lineText)) {
+              contactNumbers.add(lineText);
+            }
+
+            if (RegExp(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b')
+                .hasMatch(lineText)) {
               emails.add(lineText);
             }
 
-            // Check for website links
-            if (lineText.contains(RegExp(r'https?://\S+'))) {
+            if (RegExp(r'https?://\S+').hasMatch(lineText) ||
+                RegExp(r'\bwww\.[A-Za-z0-9.-]+\b').hasMatch(lineText)) {
               websites.add(lineText);
-            }
-
-            // Check for contact numbers (this is a basic example, you might need to adapt it)
-            if (lineText.contains(RegExp(r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b'))) {
-              contactNumbers.add(lineText);
             }
           }
         }
@@ -54,11 +57,14 @@ Future<void> orcScanner() async {
       String emailValue = emails.isNotEmpty ? emails.first : "";
       String websiteValue = websites.isNotEmpty ? websites.first : "";
 
-      await dabaseCURDfunctionController.insertBusinessCard(BusinessCardModel(
+      await databaseCRUDFunctionController.insertBusinessCard(
+        BusinessCardModel(
           name: nameValue,
           contactNumber: contactNumberValue,
           email: emailValue,
-          website: websiteValue));
+          website: websiteValue,
+        ),
+      );
     }
   } catch (e) {
     print(e);

@@ -80,20 +80,26 @@ class BusinessCardDataWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              businessCardData.name,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            SizedBox(
+              height: 25,
+              child: Text(
+                businessCardData.name,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             Text(
               businessCardData.email,
               style: const TextStyle(fontWeight: FontWeight.w500),
             ),
-            Text(
-              businessCardData.website,
-              style: const TextStyle(fontWeight: FontWeight.w500),
+            SizedBox(
+              height: 20,
+              child: Text(
+                businessCardData.website,
+                style: const TextStyle(fontWeight: FontWeight.w500),
+              ),
             ),
           ],
         ),

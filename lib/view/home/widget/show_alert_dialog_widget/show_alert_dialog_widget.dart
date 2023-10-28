@@ -28,8 +28,8 @@ Future<void> showAlertDialog(
           ),
           TextButton(
             child: const Text('OK'),
-            onPressed: () {
-              function();
+            onPressed: () async {
+              await function();
 
               Get.offAll(() => const ScreenHome());
               showWarningMessage(context, warningMessage);
